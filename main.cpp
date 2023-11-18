@@ -16,6 +16,9 @@ using namespace std;
 // ФИО в классе “Человек”.Не забывайте обеспечить классы различными конструкторами деструкторами.
 //
 // В main протестировать работу полученного набора классов
+// ----------------
+// необходимо в данное решение добавить конструктор копирования.
+
 
 int main()
 {
@@ -32,16 +35,21 @@ int main()
     Apartment* apartment2 = new Apartment(1);
     apartment2->addChel(person3);
 
-    House* house = new House(2);
-    house->addApartment(apartment1);
-    house->addApartment(apartment2);
+    House* house1 = new House(2);
+    house1->addApartment(apartment1);
+    house1->addApartment(apartment2);
 
-    house->showChel();
+    House* house2 = new House(*house1);
 
-    delete house;
-    delete person1;
-    delete person2;
-    delete person3;
+    std::cout << "Жители дома 1:" << std::endl;
+    house1->showChel();
+    std::cout << std::endl;
+
+    std::cout << "Жители дома 2:" << std::endl;
+    house2->showChel();
+
+    delete house1;
+    delete house2;
 
     return 0;
 }

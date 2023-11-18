@@ -9,6 +9,14 @@ public:
     size_t kol_human;
     Apartment(int capacity) : chel(new Human* [capacity]), kol_human(0) {}
 
+    Apartment(const Apartment& obj) :
+        chel(new Human* [obj.kol_human]),
+        kol_human(obj.kol_human) {
+        for (int i = 0; i < kol_human; ++i) {
+            chel[i] = new Human(*obj.chel[i]);
+        }
+    }
+
     ~Apartment() {
         delete[] chel;
     }

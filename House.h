@@ -9,6 +9,14 @@ public:
     House(size_t capacity) :
         apartments(new Apartment* [capacity]), numberOfApartments(0) {}
 
+    // Конструктор копирования
+    House(const House& obj) :
+        apartments(new Apartment* [obj.numberOfApartments]),
+        numberOfApartments(obj.numberOfApartments) {
+        for (int i = 0; i < numberOfApartments; ++i) {
+            apartments[i] = new Apartment(*obj.apartments[i]);
+        }
+    }
     ~House() {
         for (size_t i = 0; i < numberOfApartments; ++i) {
             delete apartments[i];
